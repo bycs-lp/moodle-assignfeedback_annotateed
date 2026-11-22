@@ -1,0 +1,1 @@
+function g(p,r){const n=new Set([0,p.length]);for(const t of r)n.add(t.start),n.add(t.end);const s=[...n].sort((t,e)=>t-e),o=[];for(let t=0;t<s.length-1;t++){const e=s[t],a=s[t+1],c=r.filter(d=>d.start<=e&&d.end>=a);o.push({start:e,end:a,spans:c})}return o}export{g as splitIntoSegments};

@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": ["../../src/lib/selection.ts"],
+  "sourceRoot": "../../../../../../sources/public/mod/assign/feedback/annotateed/js/esm/build",
+  "sourcesContent": ["import type { Span } from \"../types\";\r\n\r\n// Turns the browser selection into positions in the text of root.\r\nexport function getSelectedSpan(root: HTMLElement): Span | null {\r\n  const selection = window.getSelection();\r\n  if (!selection || selection.rangeCount === 0 || selection.isCollapsed) return null;\r\n  const range = selection.getRangeAt(0);\r\n  // Moodle rule: Only selections inside our own container count.\r\n  if (!root.contains(range.startContainer) || !root.contains(range.endContainer)) return null;\r\n  // Measure the text from the start of the container up to the selection.\r\n  const before = document.createRange();\r\n  before.selectNodeContents(root);\r\n  before.setEnd(range.startContainer, range.startOffset);\r\n  const start = before.toString().length;\r\n  const end = start + range.toString().length;\r\n  return { start, end };\r\n}"],
+  "mappings": ";;AAGO,SAAS,gBAAgB,MAAgC;AAC9D,QAAM,YAAY,OAAO,aAAa;AACtC,MAAI,CAAC,aAAa,UAAU,eAAe,KAAK,UAAU,YAAa,QAAO;AAC9E,QAAM,QAAQ,UAAU,WAAW,CAAC;AAEpC,MAAI,CAAC,KAAK,SAAS,MAAM,cAAc,KAAK,CAAC,KAAK,SAAS,MAAM,YAAY,EAAG,QAAO;AAEvF,QAAM,SAAS,SAAS,YAAY;AACpC,SAAO,mBAAmB,IAAI;AAC9B,SAAO,OAAO,MAAM,gBAAgB,MAAM,WAAW;AACrD,QAAM,QAAQ,OAAO,SAAS,EAAE;AAChC,QAAM,MAAM,QAAQ,MAAM,SAAS,EAAE;AACrC,SAAO,EAAE,OAAO,IAAI;AACtB;AAbgB;",
+  "names": []
+}

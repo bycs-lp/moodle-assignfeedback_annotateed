@@ -1,7 +1,19 @@
 {{!
     @template assignfeedback_annotateed/editor
 
-    {}
+    The AnnotateEd editor as a React component.
+
+    Context variables required for this template:
+    * propsjson - The props of the editor as JSON: text and categories.
+
+    Example context (json):
+    {
+        "propsjson": "{\"text\": \"Ein kurzer Text.\", \"categories\": []}"
+    }
 }}
-<h3>    yoyoyo hier ist der AnnotateEd-Editor
-</h3>
+{{#react}}
+{
+    "component": "@moodle/lms/assignfeedback_annotateed/Editor",
+    "props": {{{propsjson}}}
+}
+{{/react}}

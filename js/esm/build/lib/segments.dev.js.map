@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": ["../../src/lib/segments.ts"],
+  "sourceRoot": "../../../../../../sources/public/mod/assign/feedback/annotateed/js/esm/build",
+  "sourcesContent": ["import type { Span } from \"../types\";\n\n// One piece of the text plus all spans that cover it.\nexport interface Segment<T extends Span> {\n  start: number;\n  end: number;\n  spans: T[];\n}\n\n// Cuts the text at every start and every end of a span (overlaps allowed).\nexport function splitIntoSegments<T extends Span>(text: string, spans: T[]): Segment<T>[] {\n  const boundaries = new Set([0, text.length]);\n  for (const span of spans) {\n    boundaries.add(span.start);\n    boundaries.add(span.end);\n  }\n  const sorted = [...boundaries].sort((a, b) => a - b);\n\n  const segments: Segment<T>[] = [];\n  for (let i = 0; i < sorted.length - 1; i++) {\n    const start = sorted[i];\n    const end = sorted[i + 1];\n    // A span covers the segment if it starts at or before it and ends at or after it.\n    const covering = spans.filter((s) => s.start <= start && s.end >= end);\n    segments.push({ start, end, spans: covering });\n  }\n  return segments;\n}\n"],
+  "mappings": ";;AAUO,SAAS,kBAAkC,MAAc,OAA0B;AACxF,QAAM,aAAa,oBAAI,IAAI,CAAC,GAAG,KAAK,MAAM,CAAC;AAC3C,aAAW,QAAQ,OAAO;AACxB,eAAW,IAAI,KAAK,KAAK;AACzB,eAAW,IAAI,KAAK,GAAG;AAAA,EACzB;AACA,QAAM,SAAS,CAAC,GAAG,UAAU,EAAE,KAAK,CAAC,GAAG,MAAM,IAAI,CAAC;AAEnD,QAAM,WAAyB,CAAC;AAChC,WAAS,IAAI,GAAG,IAAI,OAAO,SAAS,GAAG,KAAK;AAC1C,UAAM,QAAQ,OAAO,CAAC;AACtB,UAAM,MAAM,OAAO,IAAI,CAAC;AAExB,UAAM,WAAW,MAAM,OAAO,CAAC,MAAM,EAAE,SAAS,SAAS,EAAE,OAAO,GAAG;AACrE,aAAS,KAAK,EAAE,OAAO,KAAK,OAAO,SAAS,CAAC;AAAA,EAC/C;AACA,SAAO;AACT;AAjBgB;",
+  "names": []
+}
