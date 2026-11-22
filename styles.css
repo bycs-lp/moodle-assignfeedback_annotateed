@@ -1,0 +1,22 @@
+.atd-text-view {
+  white-space: pre-wrap;
+}
+
+.atd-mark {
+  padding: 0;
+  color: inherit;
+  background-color: color-mix(in srgb, var(--atd-mark-color) var(--atd-mark-alpha), transparent);
+  border-bottom: 2px solid var(--atd-mark-color);
+}
+
+.atd-mark--active {
+  background-color: var(--atd-mark-color);
+}
+
+.atd-editor .atd-card {
+  border-inline-start: 6px solid var(--atd-card-color);
+}
+
+.atd-editor .atd-card--active {
+  background-color: color-mix(in srgb, var(--atd-card-color) 20%, transparent);
+}
